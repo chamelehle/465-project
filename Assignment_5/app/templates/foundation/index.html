@@ -6,6 +6,16 @@
 
 {% block content %}
 
+<div class="top-bar" id="main-menu">
+<div class="top-bar-right">
+    <ul class="dropdown menu" data-dropdown-menu>
+      {% if user.is_authenticated %}
+      <li><a href="/logout/">Logout</a></li>
+      {% else %}
+      <li><a href="/login/">Log In</a></li>
+      {% endif %}
+    </ul>
+  </div>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -24,12 +34,11 @@
                 <li><a href="{% url 'map' %}">Map</a></li>
                 <li><a href="{% url 'facts' %}">Fact Sheet</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
             </ul>
         </div>
     </div>
 </div>
-
+</div>
 <div class="jumbotron">
     <h1>Colorado Youth Matter</h1>
 </div>

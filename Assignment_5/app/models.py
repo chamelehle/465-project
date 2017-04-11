@@ -22,8 +22,8 @@ class aboutl(models.Model):
     position=models.CharField(max_length=500)
     person_name=models.CharField(max_length=250)
     email=models.URLField(max_length=1000, default='')
-    phone=models.PhoneNumberField()
+    phone=models.IntegerField(max_length=15)
 
 
     def __str__(self):
-        return str(self.person_name) + " : " + str(self.email) + " : " + str(self.position)
+        return str(self.person_name) + " : " + str(self.email) + " : " + str(self.position) + " : " + str(self.phone)

@@ -1,3 +1,4 @@
+
 {% extends "foundation/base.html" %}
 {% load static %}
 {% load render_bundle from webpack_loader %}
@@ -5,6 +6,7 @@
 {% block title %} {{ page_name }} {% endblock %}
 
 {% block content %}
+
 <div class="top-bar" id="main-menu">
 <div class="top-bar-right">
     <ul class="dropdown menu" data-dropdown-menu>
@@ -38,40 +40,31 @@
     </div>
 </div>
 </div>
-<div class="accordion-title">
-    <h2>About Page</h2>
+<div class="jumbotron">
+    <h3>Register</h3>
 </div>
-{% if user.is_authenticated %}
-      <h3 style="margin-left: 2.0in;">Add Personnel</h3>
-      <form action="" method="post">
-        <div class="row">
-            {% csrf_token %}
-            <div class="large-4 columns">
-              {{ form.as_p }}
-            </div>
-            <div class="large-8 columns">
-        </div>
-       <p><input  type="submit" value="Submit"/></p>
-      </form>
-      {% endif %}
-  <div id="suggested">
-    <div style="margin-left: 8in;">
-    <ul>
-      {% for  person_name, email, position, phone in aboutl %}
-      <li><p>Personnel Name: {{ person_name }} </p> </li>
-        <p>Email: <a href="">{{ email }} </a></p>
-      <p>Position: {{ position }}</p>
-      <p>Phone: {{ phone }}</p>
-      {% endfor %}
-    </ul>
+
+<div class="row">
+  <div class="medium-6 medium-centered large-4 large-centered columns">
+    <form method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+      <div class="row column log-in-form">
+        <h4 class="text-center">Register</h4>
+        {{ form.errors }}
+        <label>{{ form.username.label_tag }}</label>
+          {{ form.username }}
+
+        <label>{{ form.email.label_tag }}</label>
+          {{ form.email }}
+
+        <label>{{ form.password1.label_tag }}</label>
+          {{ form.password1 }}
+
+        <label>{{ form.password2.label_tag }}</label>
+        {{ form.password2 }}
+        <input type="submit" class="button expanded" value="Register">
+      </div>
+    </form>
   </div>
-
 </div>
-{% endblock %}
-
-{% block scripts %}
-{{ block.super }}
-<script src="https://unpkg.com/react@15/dist/react.js"></script>
-<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
-{% render_bundle 'main' %}
 {% endblock %}

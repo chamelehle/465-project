@@ -3,6 +3,17 @@
 <html class="no-js" lang="en">
 <head>
 
+
+  {% block head %}
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static "css/foundation.css" %}">
+  <link rel="stylesheet" href="{% static "css/app.css" %}">
+  {% endblock %}
+
+
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load staticfiles %}
@@ -55,7 +66,12 @@
 
     <div class="container body-content">
 -->
-{% block scripts %}{% endblock %}
+{% block scripts %}
+  <script src="{% static "js/vendor/jquery.js" %}"></script>
+  <script src="{% static "js/vendor/what-input.js" %}"></script>
+  <script src="{% static "js/vendor/foundation.js" %}"></script>
+  <script src="{% static "js/app.js" %}"></script>
+  {% endblock %}
 
     {% block body_attr %}{% endblock body_attr %}
     {# Main content goes here #}

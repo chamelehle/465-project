@@ -15,7 +15,9 @@ Including another URLconf
 from django.conf.urls import include, url
 import app.views
 from django.contrib import admin
+from app.forms import LoginForm
 import django.contrib.auth.views
+from django.contrib.auth import views
 
 
 urlpatterns = [
@@ -27,4 +29,8 @@ urlpatterns = [
     url(r'^fact', app.views.facts, name='facts'),
     url(r'^login', app.views.login, name='login'),
     url(r'^about', app.views.about, name='about'),
+    url(r'^register', app.views.register, name='register'),
+    url(r'logout/', views.logout,{
+        'next_page':'/login'
+    }),
 ]

@@ -1,8 +1,11 @@
-from django.http import HttpResponse, JsonResponse, Http404, HttpRequest
+from django.http import HttpResponse, JsonResponse, Http404, HttpRequest, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404
 from django.utils.html import escape
 from django.http import JsonResponse
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.decorators import login_required
 import json as simplejson
 from django.views.decorators.csrf import csrf_exempt
 
@@ -87,14 +90,12 @@ def about(request):
 def map(request):
     return render(
         request,
-        'foundation/map.html',
-        context
+        'foundation/map.html'
      )
 def login(request):
     return render(
         request,
-        'foundation/login.html',
-        context
+        'foundation/login.html'
      )
 def facts(request):
     form = FactForm
@@ -123,3 +124,24 @@ def facts(request):
         'foundation/facts.html',
         context
      )
+
+def register(request):
+    if request.method == "POST":
+        username = request.POST.get('username', '')
+        password = request.POST.get('password1', '')
+        form = registration_form(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user = authenticate(
+                username=username,
+                password=password)
+            auth_login(request, user)
+            return HttpResponseRedirect('/')
+
+    else:
+        form = registration_form()
+    context = {
+        'title':'Register',
+        'form':form
+    }
+    return render(request, 'foundation/register.html', context)

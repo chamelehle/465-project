@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'phonenumber_field',
     'webpack_loader',
 ]
 
@@ -123,8 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,"static")
-
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "hello","static"), os.path.join(BASE_DIR, "assets", "static"),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "hello","static"), os.path.join(BASE_DIR, 'assets'),]
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,

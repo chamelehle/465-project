@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import submit, fact, aboutl
+from .models import *
 
 admin.site.register(submit)
 admin.site.register(fact)
