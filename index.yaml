@@ -1,0 +1,6 @@
+indexes:
+
+- kind: Submit
+  properties:
+  - name: Submit
+    direction: desc
